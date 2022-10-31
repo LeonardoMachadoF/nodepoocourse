@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=rentex
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=rentx
+    ports:
+      - 5000:5432
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local
