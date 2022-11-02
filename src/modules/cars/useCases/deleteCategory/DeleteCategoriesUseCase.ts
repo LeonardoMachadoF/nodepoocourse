@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../errors/AppError";
 import { CategoriesRepository } from "../../repositories/implementations/CategoriesRepository";
 
 interface IRequest {
@@ -14,7 +15,7 @@ class DeleteCategoriesUseCase {
     execute({ name }: IRequest) {
         let category = this.categoriesRepository.findByName(name);
         if (!category) {
-            throw new Error('Categoria inexistente!')
+            throw new AppError('Categoria inexistente!')
         };
         this.categoriesRepository.delete(name);
     }
