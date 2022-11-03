@@ -8,8 +8,8 @@ export const AppDataSource = new DataSource({
     username: "rentex",
     password: "1234",
     database: "rentx",
-    entities: [`./src/modules/**/entities/*.{ts,js}`],
-    migrations: ["./src/database/migrations/*.ts"]
+    entities: ['./src/modules/**/infra/typeorm/entities/*.{ts,js}'],
+    migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
 })
 
 
