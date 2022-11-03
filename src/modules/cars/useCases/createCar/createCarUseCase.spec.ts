@@ -1,9 +1,10 @@
 import { AppError } from "../../../../errors/AppError";
 import { CarsRepositoryInMemory } from "../../repositories/in-memory/CarsRepositoryInMemory";
-import { CreateCarUseCase } from "./createCarUseCase"
+import { CreateCarUseCase } from "./CreateCarUseCase"
 
 let carsRepository: CarsRepositoryInMemory;
 let createCarUseCase: CreateCarUseCase;
+
 const exampleCar = {
     name: 'Test Car',
     brand: 'Test Brand',
@@ -11,7 +12,7 @@ const exampleCar = {
     description: 'Test Description',
     fine_amount: 30,
     license_plate: '222033',
-    category_id: 'category'
+    category_id: 'f009e970-f1fc-4c89-8576-e642f83b51c4'
 }
 
 describe("Create Car", () => {
@@ -25,7 +26,7 @@ describe("Create Car", () => {
         expect(car).toHaveProperty('id');
     })
 
-    it('Should not be able to create a car with existign license_plate', async () => {
+    it('Should not be able to create a car with existing license_plate', async () => {
         expect(async () => {
             await createCarUseCase.execute(exampleCar);
             await createCarUseCase.execute(exampleCar);

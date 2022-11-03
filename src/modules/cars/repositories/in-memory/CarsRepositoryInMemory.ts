@@ -3,10 +3,10 @@ import { ICarsRepository } from "../ICarsRepository";
 
 export class CarsRepositoryInMemory implements ICarsRepository {
 
-    async findByLicensePlate(license_plate: string): Promise<Car | void> {
+    async findByLicensePlate(license_plate: string): Promise<Car | null> {
         let car = this.cars.find(car => car.license_plate === license_plate);
         if (!car) {
-            return;
+            return null;
         }
         return car;
     }
