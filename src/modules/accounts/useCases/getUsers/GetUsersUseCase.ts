@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
-import { UsersRepository } from "../../repositories/implementations/UsersRepository";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 @injectable()
 export class GetUsersUseCase {
     constructor(
         @inject('UsersRepository')
-        private usersRepository: UsersRepository
+        private usersRepository: IUsersRepository
     ) { }
 
 

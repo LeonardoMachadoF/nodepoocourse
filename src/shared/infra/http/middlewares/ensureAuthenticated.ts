@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import { verify } from "jsonwebtoken";
-import { NextFunction, request, Request, Response } from "express";
-import { UsersRepository } from '../modules/accounts/repositories/implementations/UsersRepository';
-import { AppError } from '../errors/AppError';
+import { NextFunction, Request, Response } from "express";
+import { AppError } from '../../../../errors/AppError';
+import { UsersRepository } from '../../../../modules/accounts/infra/repositories/UsersRepository';
 
 interface IPayload {
     sub: string;
