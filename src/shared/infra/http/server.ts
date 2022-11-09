@@ -10,7 +10,7 @@ import swaggerUI from 'swagger-ui-express';
 import { AppDataSource } from '../typeorm';
 
 AppDataSource.initialize().then(
-    () => console.log('database connected')
+    () => console.log('connected')
 )
 
 const app = express();

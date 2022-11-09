@@ -4,7 +4,7 @@ import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 @Entity("categories")
 class Category {
     @PrimaryColumn()
-    id?: string;
+    id: string;
 
     @Column()
     name: string;

@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 @Entity('specifications')
 class Specification {
     @PrimaryColumn()
-    id?: string;
+    id: string;
 
     @Column()
     name: string;

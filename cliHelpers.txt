@@ -1,0 +1,1 @@
+yarn typeorm migration:create './src/shared/infra/typeorm/migrations/**********'

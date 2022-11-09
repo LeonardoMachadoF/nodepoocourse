@@ -10,7 +10,4 @@ export const AppDataSource = new DataSource({
     database: "rentx",
     entities: ['./src/modules/**/infra/typeorm/entities/*.{ts,js}'],
     migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
-})
-
-
-
+});

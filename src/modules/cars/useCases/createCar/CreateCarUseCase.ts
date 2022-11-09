@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { inject, injectable } from "tsyringe";
 import { AppError } from '../../../../errors/AppError';
+import { ICreateCarDTO } from '../../dtos/ICreateCarDTO';
 import { Car } from '../../infra/typeorm/entities/Car';
 import { ICarsRepository } from '../../repositories/ICarsRepository';
 
@@ -18,6 +19,7 @@ export class CreateCarUseCase {
         fine_amount,
         license_plate,
         name,
+        specifications
     }: ICreateCarDTO): Promise<Car> {
 
         const carAlreadyExists = await this.carsRepository.findByLicensePlate(license_plate);
@@ -33,7 +35,8 @@ export class CreateCarUseCase {
             description,
             fine_amount,
             license_plate,
-            name
+            name,
+            specifications
         });
 
         return car;

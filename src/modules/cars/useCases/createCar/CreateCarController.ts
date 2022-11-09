@@ -7,8 +7,8 @@ export class CreateCarController {
         const { name, brand, category_id, daily_rate, description, fine_amount, license_plate } = req.body;
 
         const createCarUseCase = container.resolve(CreateCarUseCase);
-        await createCarUseCase.execute({ name, brand, category_id, daily_rate, description, fine_amount, license_plate });
+        const car = await createCarUseCase.execute({ name, brand, category_id, daily_rate, description, fine_amount, license_plate });
 
-        return res.status(201).send();
+        return res.status(201).json(car);
     }
 }
