@@ -1,4 +1,4 @@
-import { inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppError";
 import { ICarsRepository } from "../../repositories/ICarsRepository";
 import { ISpecificationsRepository } from "../../repositories/ISpecificationsRepository";
@@ -8,13 +8,13 @@ interface IRequest {
     specifications_id: string[];
 }
 
+@injectable()
 export class CreateCarSpecificationUseCase {
     constructor(
         @inject("CarsRepository")
         private carsRepository: ICarsRepository,
         @inject('SpecificationsRepository')
         private specificationsRepository: ISpecificationsRepository
-
     ) { }
 
     async execute({ car_id, specifications_id }: IRequest) {
@@ -30,6 +30,6 @@ export class CreateCarSpecificationUseCase {
 
         await this.carsRepository.create(carExists)
 
-        console.log(specifications_id)
+        return carExists;
     }
 };

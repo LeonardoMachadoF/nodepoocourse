@@ -30,8 +30,8 @@ export class CarsRepository implements ICarsRepository {
         return cars;
     }
 
-    async create({ brand, category_id, daily_rate, description, fine_amount, license_plate, name, specifications }: ICreateCarDTO): Promise<Car> {
-        let newCar = this.repository.create({ name, brand, category_id, daily_rate, description, fine_amount, license_plate, specifications })
+    async create({ brand, category_id, daily_rate, description, fine_amount, license_plate, name, specifications, id }: ICreateCarDTO): Promise<Car> {
+        let newCar = this.repository.create({ name, brand, category_id, daily_rate, description, fine_amount, license_plate, specifications, id })
         await this.repository.save(newCar);
         return newCar;
 

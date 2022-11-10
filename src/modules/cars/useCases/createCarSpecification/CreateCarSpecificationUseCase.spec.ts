@@ -36,7 +36,14 @@ describe("Create car specification", () => {
 
     it('should be able to add a new specification to the car', async () => {
         const car = await carsRepositoryInMemory.create(exampleCar);
-        const specifications_id = ['4321']
-        await createCarSpecificationUseCase.execute({ car_id: car.id, specifications_id });
+
+        const specification = await specificationsRepositoryInMemory.create({
+            name: 'test', description: 'test'
+        });
+
+        const specificationsCar = await createCarSpecificationUseCase.execute({ car_id: car.id, specifications_id: [specification.id] });
+
+        expect(specificationsCar).toHaveProperty('specifications')
+        expect(specificationsCar.specifications.length).toBe(1);
     })
 })
