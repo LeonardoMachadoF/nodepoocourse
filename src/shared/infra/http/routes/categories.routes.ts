@@ -5,6 +5,7 @@ import { ImportCategoryController } from '../../../../modules/cars/useCases/impo
 import { DeleteCategoryController } from '../../../../modules/cars/useCases/deleteCategory/DeleteCategoryController';
 import { ListCategoriesController } from '../../../../modules/cars/useCases/listCategories/ListCategoriesController';
 
+
 const categoriesRoutes = Router();
 
 const upload = multer({

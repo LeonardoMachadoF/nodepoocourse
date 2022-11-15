@@ -7,7 +7,7 @@ export const AppDataSource = new DataSource({
     port: 5000,
     username: "rentex",
     password: "1234",
-    database: "rentx",
+    database: process.env.NODE_ENV === 'test' ? "rentx_test" : "rentx",
     entities: ['./src/modules/**/infra/typeorm/entities/*.{ts,js}'],
     migrations: ["./src/shared/infra/typeorm/migrations/*.ts"],
 });

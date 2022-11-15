@@ -20,7 +20,7 @@ class CategoriesRepository implements ICategoriesRepository {
     };
 
     async list(): Promise<Category[]> {
-        return await this.repository.find();
+        return await this.repository.find({});
     }
 
     async findByName(name: string): Promise<Category | null> {
