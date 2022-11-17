@@ -2,6 +2,7 @@ import { sign, verify } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 import auth from "../../../../config/auth";
 import { AppError } from "../../../../errors/AppError";
+import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
 import { DayjsDateProvider } from "../../../../shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { IUsersTokenRepository } from "../../repositories/IUsersTokenRepository";
 
@@ -16,7 +17,7 @@ export class RefreshTokenUseCase {
         @inject("UsersTokenRepository")
         private usersTokenRepository: IUsersTokenRepository,
         @inject("DayjsDateProvider")
-        private dayjsDateProvider: DayjsDateProvider
+        private dayjsDateProvider: IDateProvider
     ) { }
 
     async execute(token: string) {

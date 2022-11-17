@@ -9,6 +9,15 @@ export class UsersTokenRepository implements IUsersTokenRepository {
     constructor() {
         this.repository = AppDataSource.getRepository(UserTokens);
     }
+    async findByRefreshToken(refresh_token: string): Promise<UserTokens | null> {
+        const userToken = await this.repository.findOne({
+            where: {
+                refresh_token
+            }
+        });
+
+        return userToken
+    }
     async deleteById(id: string): Promise<void> {
         await this.repository.delete(id)
     }
