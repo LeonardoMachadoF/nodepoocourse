@@ -7,7 +7,7 @@ import { hash } from "bcrypt";
 
 let con: DataSource;
 
-describe("Create Category Controller", () => {
+describe("List Categories Controller", () => {
 
     beforeAll(async () => {
         con = await AppDataSource.initialize();

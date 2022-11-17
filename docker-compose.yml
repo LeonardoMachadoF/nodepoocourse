@@ -20,6 +20,26 @@ services:
       retries: 5
     networks:
       - host
+
+  database_test:
+    container_name: host-test
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=rentex
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=rentx_test
+    ports:
+      - 5500:5432
+    volumes:
+      - pgdata:/data/postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - host
   # web:
   #   image: node
   #   build: .
