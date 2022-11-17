@@ -2,7 +2,8 @@ import 'dotenv/config';
 import { verify } from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import { AppError } from '../../../../errors/AppError';
-import { UsersRepository } from '../../../../modules/accounts/infra/repositories/UsersRepository';
+import { UsersTokenRepository } from '../../../../modules/accounts/infra/repositories/UsersTokenRepository';
+import auth from '../../../../config/auth';
 
 interface IPayload {
     sub: string;
@@ -10,17 +11,16 @@ interface IPayload {
 
 export async function ensureAuthenticated(req: Request, response: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;
+    const userTokensRepository = new UsersTokenRepository();
     if (!authHeader) {
         throw new AppError("Token missing", 401);
     };
     const [, token] = authHeader.split(" ");
 
     try {
-        let { sub }: IPayload = verify(token, process.env.JSON_WEB_TOKEN_SECRET_KEY as string) as IPayload;
+        let { sub }: IPayload = verify(token, auth.secret_refresh_token) as IPayload;
 
-
-        const usersRepository = new UsersRepository();
-        const user = await usersRepository.findById(sub);
+        const user = await userTokensRepository.findByUserIdAndRefreshToken(sub, token);
         if (!user) {
             throw new AppError('User does not exists!', 401)
         };

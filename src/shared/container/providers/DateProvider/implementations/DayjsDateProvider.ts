@@ -5,8 +5,11 @@ import { IDateProvider } from "../IDateProvider";
 dayjs.extend(utc)
 
 export class DayjsDateProvider implements IDateProvider {
+    addDays(days: number): Date {
+        return dayjs().add(days, 'days').toDate();
+    }
     dateNow() {
-        return dayjs().toDate()
+        return dayjs().toDate();
     }
     convertToUTC(date: Date): string {
         return dayjs(date).utc().local().format();

@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   database:
+    container_name: host
     image: postgres
     restart: always
     environment:
@@ -12,7 +13,30 @@ services:
       - 5000:5432
     volumes:
       - pgdata:/data/postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - host
+  # web:
+  #   image: node
+  #   build: .
+  #   restart: always
+  #   volumes:
+  #     - .:/app/src
+  #   ports:
+  #     - 3333:3333
+  #   depends_on:
+  #     database:
+  #       condition: service_healthy
+  #   networks:
+  #     - host
 
 volumes:
   pgdata:
     driver: local
+networks:
+  host:
+    driver: bridge
