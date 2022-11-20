@@ -8,6 +8,7 @@ import { routes } from './routes';
 import swaggerFile from '../../../swagger.json';
 import swaggerUI from 'swagger-ui-express';
 import { AppDataSource } from '../typeorm';
+import upload from "../../../config/upload";
 
 AppDataSource.initialize().then(
     () => console.log('connected')
@@ -16,6 +17,8 @@ AppDataSource.initialize().then(
 const app = express();
 app.use(express.json());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerFile))
+app.use('/avatar', express.static(`${upload.tmpFolder}/avatar`))
+app.use('/cars', express.static(`${upload.tmpFolder}/cars`))
 
 app.use(routes);
 

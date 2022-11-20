@@ -1,5 +1,4 @@
-import './providers/DateProvider';
-import './providers/MailProvider';
+import './providers'
 import { container } from "tsyringe";
 import { IUsersRepository } from "../../modules/accounts/repositories/IUsersRepository";
 import { ICategoriesRepository } from "../../modules/cars/repositories/ICategoriesRepository";
@@ -14,7 +13,6 @@ import { CarsImagesRepository } from "../../modules/cars/infra/repositories/Cars
 import { IRentalsRepository } from "../../modules/rentals/repositories/IRentalsRepository";
 import { RentalsRepository } from "../../modules/rentals/infra/repositories/RentalsRepository";
 import { UsersTokenRepository } from '../../modules/accounts/infra/repositories/UsersTokenRepository';
-import { ResetPasswordUserUseCase } from '../../modules/accounts/useCases/resetPasswordUser/ResetPasswordUserUseCase';
 import { IUsersTokenRepository } from '../../modules/accounts/repositories/IUsersTokenRepository';
 
 container.registerSingleton<ICategoriesRepository>(
