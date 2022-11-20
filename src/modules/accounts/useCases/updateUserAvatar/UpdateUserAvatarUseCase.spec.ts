@@ -1,18 +1,23 @@
+import { container } from "tsyringe";
+import { LocalStorageProvider } from "../../../../shared/container/providers/StorageProvider/implementations/LocalStorageProvider";
+import { S3StorageProvider } from "../../../../shared/container/providers/StorageProvider/implementations/S3StorageProvider";
+import { IStorageProvider } from "../../../../shared/container/providers/StorageProvider/IStorageProvider";
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { User } from "../../infra/typeorm/entities/User";
 import { UsersRepositoryInMemory } from "../../repositories/in-memory/UsersRepositoryInMemory";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { UpdateUserAvatarUseCase } from "./UpdateUserAvatarUseCase";
 
-
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let updateUserAvatarUseCase: UpdateUserAvatarUseCase;
-let createUserUseCase: CreateUserUseCase
+let createUserUseCase: CreateUserUseCase;
+let storageProvider: IStorageProvider
 
 describe('', () => {
     beforeEach(() => {
         usersRepositoryInMemory = new UsersRepositoryInMemory();
-        updateUserAvatarUseCase = new UpdateUserAvatarUseCase(usersRepositoryInMemory);
+        storageProvider = new LocalStorageProvider()
+        updateUserAvatarUseCase = new UpdateUserAvatarUseCase(usersRepositoryInMemory, storageProvider);
         createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory)
     })
 
